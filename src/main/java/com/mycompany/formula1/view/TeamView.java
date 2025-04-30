@@ -95,6 +95,7 @@ public class TeamView extends javax.swing.JFrame {
         String name = nameField.getText();
         String country = countryField.getText();
         
+		
         try {
             if (name.isEmpty() || country.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
