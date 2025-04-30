@@ -6,8 +6,6 @@ import com.mycompany.formula1.model.Driver;
 import java.sql.Connection;
 import java.util.List;
 
-
-
 public class DriverController {
 
     private final DriverDAO driverDAO;
@@ -17,42 +15,34 @@ public class DriverController {
         this.driverDAO = new DriverDAO(connection);
     }
 
-    public String criarDriver(String name, int teamId) {
-        if (name == null || name.isEmpty()) {
+    public String createDriver(String name) {
+        if (name == null || name.trim().isEmpty()) {
             return "Driver name cannot be null or empty.";
         }
-        if (teamId <= 0) {
-            return "Team ID must be a positive integer.";
-        }
-        driverDAO.addDriver(new Driver(name, teamId));
+        driverDAO.insertDriver(new Driver(name));
         return null;
-
     }
 
-    public List<Driver> listarDrivers() {
-        return driverDAO.getAllDrivers();
+    public List<Driver> getAllDrivers() {
+        return driverDAO.findAllDrivers();
     }
 
-    public String atualizarDriver(int id, String name, int teamId) {
+    public String updateDriver(int id, String name) {
         if (id <= 0) return "Driver ID must be a positive integer.";
-        if (name == null || name.isEmpty()) return "Driver name cannot be null or empty.";
-        if (teamId <= 0) return "Team ID must be a positive integer.";
+        if (name == null || name.trim().isEmpty()) return "Driver name cannot be null or empty.";
         
-        driverDAO.updateDriver(new Driver(id, name, teamId));
+        driverDAO.updateDriver(new Driver(id, name));
         return null;
-
     }
 
-    public String removerDriver(int id) {
+    public String deleteDriver(int id) {
         if (id <= 0) return "Driver ID must be a positive integer.";
-        
         driverDAO.deleteDriver(id);
         return null;
-
     }
 
-    public Driver buscarDriverPorId(int id) {
+    public Driver getDriverById(int id) {
         if (id <= 0) return null;
-        return driverDAO.getDriverById(id);
+        return driverDAO.findDriverById(id);
     }
 }
