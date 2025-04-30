@@ -26,10 +26,7 @@ public class CreateTable {
     public static void createDrivers(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS drivers (" +
                      "id INT AUTO_INCREMENT PRIMARY KEY," +
-                     "name VARCHAR(255) NOT NULL," +
-                     "team_id INT," +
-                     "FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE" +
-                     ");";
+                     "name VARCHAR(255) NOT NULL );";
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
@@ -39,6 +36,24 @@ public class CreateTable {
         }
     }
 
+    public static void createDriverTeam(Connection connection) {
+    String sql = "CREATE TABLE IF NOT EXISTS driver_team (" +
+                 "driver_id INT NOT NULL," +
+                 "team_id INT NOT NULL," +
+                 "PRIMARY KEY (driver_id, team_id)," +
+                 "FOREIGN KEY (driver_id) REFERENCES drivers(id) ON DELETE CASCADE," +
+                 "FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE" +
+                 ");";
+
+    try (Statement stmt = connection.createStatement()) {
+        stmt.execute(sql);
+        System.out.println("✅ Table 'driver_team' created.");
+    } catch (Exception e) {
+        System.out.println("❌ Error creating 'driver_team': " + e.getMessage());
+    }
+}
+    
+    
     public static void createRaces(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS races (" +
                      "id INT AUTO_INCREMENT PRIMARY KEY," +
