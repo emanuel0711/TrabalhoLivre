@@ -6,7 +6,7 @@ package com.mycompany.formula1;
 
 import com.mycompany.formula1.database.CreateTable;
 import com.mycompany.formula1.database.DatabaseConnection;
-import com.mycompany.formula1.view.InitialScreen;
+import com.mycompany.formula1.view.MainScreen;
 
 import java.sql.Connection;
 
@@ -21,11 +21,10 @@ public class App {
         
         CreateTable.createTeams(connection);
         CreateTable.createDrivers(connection);
-        CreateTable.createRaces(connection);
-        CreateTable.createRaceResults(connection);
+        CreateTable.createDriverTeam(connection);
         
         System.out.println("🏁 Banco de dados e tabelas criados com sucesso!");
         
-        new InitialScreen().setVisible(true);
+        new MainScreen().setVisible(true);
     }
 }

@@ -23,7 +23,7 @@ public class TeamController {
         this.teamDAO = new TeamDAO(connection);
     }
 
-    public String criarTime(String name, String country) {
+    public String createTeam(String name, String country) {
         if (name == null || name.isBlank()) return "Team name cannot be null or empty.";
         if (country == null || country.isBlank()) return "Country cannot be null or empty.";
 
@@ -31,12 +31,12 @@ public class TeamController {
         teamDAO.addTeam(new Team(name, country));
         return null;
     }
-
-    public List<Team> listarTimes() {
+ 
+    public List<Team> getAllTeams() {
         return teamDAO.getAllTeams();
     }
 
-    public String atualizarTime(int id, String name, String country) {
+    public String updateTeam(int id, String name, String country) {
         if (id <= 0) return "Team ID must be a positive integer.";
         if (name == null || name.isBlank()) return "Team name cannot be null or empty.";
         if (country == null || country.isBlank()) return "Country cannot be null or empty.";
@@ -45,14 +45,14 @@ public class TeamController {
         return null;
     }
 
-    public String removerTime(int id) {
+    public String removeTeam(int id) {
         if (id <= 0) return "Team ID must be a positive integer.";
 
         teamDAO.deleteTeam(id);
         return null;
     }
 
-    public Team buscarTimePorId(int id) {
+    public Team getTeamById(int id) {
         if (id <= 0) return null;
         return teamDAO.getTeamById(id);
     }

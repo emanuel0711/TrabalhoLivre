@@ -1,11 +1,9 @@
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\App.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\controller\DriverController.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\controller\RaceController.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\controller\ResultController.java
+C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\controller\DriverTeamController.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\controller\TeamController.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\dao\DriverDAO.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\dao\RaceDAO.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\dao\ResultDAO.java
+C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\dao\DriverTeamDAO.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\dao\TeamDAO.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\database\CreateTable.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\database\DatabaseConnection.java
@@ -13,9 +11,5 @@ C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\model\Race.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\model\Result.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\model\Team.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\service\DriverService.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\service\RaceService.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\service\ResultService.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\service\TeamService.java
-C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\view\InformationScreen.java
 C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\view\InitialScreen.java
+C:\Users\Adrian\Desktop\Agora é aqui\TrabalhoLivre\src\main\java\com\mycompany\formula1\view\MainScreen.java
