@@ -27,7 +27,6 @@ public class CreateTable {
         String sql = "CREATE TABLE IF NOT EXISTS drivers (" +
                      "id INT AUTO_INCREMENT PRIMARY KEY," +
                      "name VARCHAR(255) NOT NULL );";
-
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
             System.out.println("✅ Table 'drivers' created.");
