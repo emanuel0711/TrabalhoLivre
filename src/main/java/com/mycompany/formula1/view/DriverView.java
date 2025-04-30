@@ -97,24 +97,28 @@ public class DriverView extends javax.swing.JFrame {
     }
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
                     
-  try {
-            String name = driverNameField.getText();
-            if (name.isEmpty() ) {
-                JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
-                return;
-            } 
-              if (this.driver == null) {
-                 driverController.createDriver(name);
-            } else {
-                driverController.updateDriver(this.driver.getId(), name);
-            }
-  
-          
-            this.dispose();
-        } catch (Exception e) {
-            showErrorMessage(e.getMessage());
-       }
+    try {
+        String name = driverNameField.getText();
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            return;
+        }
 
+        if (this.driver == null) {
+            driverController.createDriver(name);
+        } else {
+            driverController.updateDriver(this.driver.getId(), name);
+        }
+
+        // Abrir a DriverScreen
+        MainScreen MainScreen = new MainScreen();
+        MainScreen.setVisible(true);
+
+        this.dispose(); 
+        
+    } catch (Exception e) {
+        showErrorMessage(e.getMessage());
+    }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     /**
