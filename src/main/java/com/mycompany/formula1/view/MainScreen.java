@@ -278,7 +278,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTeamActionPerformed
 
     
-    public void showErrorMessage(String message) {
+    private void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Erro", JOptionPane.ERROR_MESSAGE);
     }
     
