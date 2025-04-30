@@ -4,8 +4,8 @@
  */
 package com.mycompany.formula1.controller;
 
-import com.mycompany.formula1.Service.TeamService;
-import com.mycompany.formula1.database.ConexaoDatabase;
+import com.mycompany.formula1.service.TeamService;
+import com.mycompany.formula1.database.DatabaseConnection;
 import com.mycompany.formula1.model.Team;
 import java.sql.Connection;
 import java.util.List;
@@ -21,7 +21,7 @@ public class TeamController {
     private final Connection connection;
 
     public TeamController() {
-        this.connection = ConexaoDatabase.getConnection();
+        this.connection = DatabaseConnection.getConnection();
         this.teamService = new TeamService(connection);
     }
 
@@ -32,13 +32,13 @@ public class TeamController {
         }
         Team team = new Team(name, country);
         teamService.addTeam(team);
-        ConexaoDatabase.closeConnection();
+        DatabaseConnection.closeConnection();
     }
 
     // Método para listar todos os times
     public List<Team> getAllTeams() throws Exception {
         List<Team> teams = (List<Team>) teamService.getAllTeams();
-        ConexaoDatabase.closeConnection();
+        DatabaseConnection.closeConnection();
         return teams;
     }
 
@@ -49,12 +49,12 @@ public class TeamController {
         }
         Team team = new Team(id, name, country);
         teamService.updateTeam(team);
-        ConexaoDatabase.closeConnection();
+        DatabaseConnection.closeConnection();
     }
 
     // Método para remover um time
     public void deleteTeam(int id) throws Exception {
         teamService.deleteTeam(id);
-        ConexaoDatabase.closeConnection();
+        DatabaseConnection.closeConnection();
     }
 }

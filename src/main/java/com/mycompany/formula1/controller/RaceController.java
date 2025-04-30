@@ -2,7 +2,7 @@ package com.mycompany.formula1.controller;
 
 import com.mycompany.formula1.model.Race;
 import com.mycompany.formula1.service.RaceService;
-import com.mycompany.formula1.database.ConexaoDatabase;
+import com.mycompany.formula1.database.DatabaseConnection;
 import java.sql.Connection;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class RaceController {
 
     public RaceController() {
         // Obtenha a conexão do banco de dados e passe para o serviço
-        Connection connection = ConexaoDatabase.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         this.raceService = new RaceService(connection);
     }
 

@@ -1,77 +1,70 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.formula1.controller;
 
-import com.mycompany.formula1.Service.DriverService;
-import com.mycompany.formula1.database.ConexaoDatabase;
+import com.mycompany.formula1.service.DriverService;
+import com.mycompany.formula1.database.DatabaseConnection;
 import com.mycompany.formula1.model.Driver;
 import java.sql.Connection;
 import java.util.List;
 
-/**
- *
- * @author emanu
- */
-
-
 public class DriverController {
 
-     private final DriverService driverService;
+    private final DriverService driverService;
     private final Connection connection;
 
     public DriverController() {
-        this.connection = ConexaoDatabase.getConnection();
+        this.connection = DatabaseConnection.getConnection();
         this.driverService = new DriverService(connection);
     }
 
-    public void criarDriver(String nome, int teamId) throws Exception {
+    public String criarDriver(String name, int teamId) {
         try {
-            driverService.addDriver(nome, teamId);
+            driverService.addDriver(name, teamId);
             connection.commit();
+            return null;
         } catch (Exception e) {
-            connection.rollback();
-            throw e; // Relança a exceção para ser tratada na View
+            try { connection.rollback(); } catch (Exception ex) {}
+            return e.getMessage();
         } finally {
-            ConexaoDatabase.closeConnection(); // Fecha a conexão no finally
+            DatabaseConnection.closeConnection();
         }
     }
 
-    public List<Driver> listarDrivers() throws Exception {
-         try {
+    public List<Driver> listarDrivers() {
+        try {
             List<Driver> drivers = driverService.getAllDrivers();
             connection.commit();
             return drivers;
         } catch (Exception e) {
-            connection.rollback();
-            throw e;
+            try { connection.rollback(); } catch (Exception ex) {}
+            return null; 
         } finally {
-            ConexaoDatabase.closeConnection();
+            DatabaseConnection.closeConnection();
         }
     }
 
-    public void atualizarDriver(int id, String nome, int teamId) throws Exception {
+    public String atualizarDriver(int id, String name, int teamId) {
         try {
-            driverService.updateDriver(id, nome, teamId);
+            driverService.updateDriver(id, name, teamId);
             connection.commit();
+            return null;
         } catch (Exception e) {
-            connection.rollback();
-            throw e;
+            try { connection.rollback(); } catch (Exception ex) {}
+            return e.getMessage();
         } finally {
-           ConexaoDatabase.closeConnection();
+            DatabaseConnection.closeConnection();
         }
     }
 
-    public void removerDriver(int id) throws Exception {
+    public String removeDriver(int id) {
         try {
             driverService.deleteDriver(id);
             connection.commit();
+            return null;
         } catch (Exception e) {
-            connection.rollback();
-            throw e;
+            try { connection.rollback(); } catch (Exception ex) {}
+            return e.getMessage();
         } finally {
-            ConexaoDatabase.closeConnection();
+            DatabaseConnection.closeConnection();
         }
     }
 }

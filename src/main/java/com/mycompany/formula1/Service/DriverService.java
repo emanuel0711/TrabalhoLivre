@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.formula1.Service;
+package com.mycompany.formula1.service;
 
 import com.mycompany.formula1.model.Driver;
-import com.mycompany.formula1.model.DriverDAO;
+import com.mycompany.formula1.dao.DriverDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;

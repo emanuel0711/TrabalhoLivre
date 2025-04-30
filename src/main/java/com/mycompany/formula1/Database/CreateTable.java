@@ -1,8 +1,6 @@
-package com.mycompany.formula1.Database;
+package com.mycompany.formula1.database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -10,38 +8,11 @@ import java.sql.Statement;
  * @author emanu
  */
 public class CreateTable {
-
-
-public class ConexaoDatabase {
- private static Connection connection;
-
-    public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection("jdbc:sqlite:formula1.db");
-            } catch (SQLException e) {
-                System.out.println("Erro ao conectar ao banco: " + e.getMessage());
-            }
-        }
-        return connection;
-    }
-
-    public static void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-                connection = null;
-            } catch (SQLException e) {
-                System.out.println("Erro ao fechar a conexão: " + e.getMessage());
-            }
-        }
-    }
-}
     public static void createTeams(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS teams (" +
-                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                     "name TEXT NOT NULL," +
-                     "country TEXT NOT NULL" +
+                     "id INT AUTO_INCREMENT PRIMARY KEY," +
+                     "name VARCHAR(255) NOT NULL," +
+                     "country VARCHAR(255) NOT NULL" +
                      ");";
 
         try (Statement stmt = connection.createStatement()) {
@@ -53,12 +24,12 @@ public class ConexaoDatabase {
     }
 
     public static void createDrivers(Connection connection) {
-     String sql = "CREATE TABLE IF NOT EXISTS drivers (" +
-        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        "name TEXT NOT NULL," +
-        "team INTEGER," +  
-        "FOREIGN KEY (team) REFERENCES teams(id) ON DELETE CASCADE" + 
-        ");";
+        String sql = "CREATE TABLE IF NOT EXISTS drivers (" +
+                     "id INT AUTO_INCREMENT PRIMARY KEY," +
+                     "name VARCHAR(255) NOT NULL," +
+                     "team_id INT," +
+                     "FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE" +
+                     ");";
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
@@ -70,9 +41,9 @@ public class ConexaoDatabase {
 
     public static void createRaces(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS races (" +
-                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                     "name TEXT NOT NULL," +
-                     "race_date TEXT NOT NULL" +   // Armazena como string: "2025-04-28"
+                     "id INT AUTO_INCREMENT PRIMARY KEY," +
+                     "name VARCHAR(255) NOT NULL," +
+                     "race_date DATE NOT NULL" +
                      ");";
 
         try (Statement stmt = connection.createStatement()) {
@@ -85,11 +56,11 @@ public class ConexaoDatabase {
 
     public static void createRaceResults(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS race_results (" +
-                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                     "driver_id INTEGER," +
-                     "race_id INTEGER," +
-                     "position INTEGER," +
-                     "time TEXT," +   // Armazena como string: "01:23:45"
+                     "id INT AUTO_INCREMENT PRIMARY KEY," +
+                     "driver_id INT," +
+                     "race_id INT," +
+                     "position INT," +
+                     "time TIME," +
                      "FOREIGN KEY (driver_id) REFERENCES drivers(id) ON DELETE CASCADE," +
                      "FOREIGN KEY (race_id) REFERENCES races(id) ON DELETE CASCADE" +
                      ");";

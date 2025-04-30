@@ -1,7 +1,7 @@
 package com.mycompany.formula1.service;
 
 import com.mycompany.formula1.model.Race;
-import com.mycompany.formula1.model.RaceDAO;
+import com.mycompany.formula1.dao.RaceDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,7 +16,7 @@ private final RaceDAO raceDAO;
 
     public RaceService(Connection connection) {
         this.connection = connection;
-        this.raceDAO = new RaceDAO(connection); // Passa a conexão para o RaceDAO
+        this.raceDAO = new RaceDAO(connection); 
     }
 
     public void addRace(String name) throws Exception {
