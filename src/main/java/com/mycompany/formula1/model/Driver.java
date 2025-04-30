@@ -12,7 +12,7 @@ public class Driver {
 
     private int id;
     private String name;
-
+    private int teamId;
     
     public Driver() {
 }
@@ -27,6 +27,7 @@ public class Driver {
     public Driver(String name) {
         this.name = name;
     }
+    
 
     // Getters e Setters
     public int getId() {
@@ -40,6 +41,12 @@ public class Driver {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public int getTeamId() {
+        return teamId;
+    }
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 }
 
