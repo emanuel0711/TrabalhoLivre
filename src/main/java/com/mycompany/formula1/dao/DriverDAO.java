@@ -45,10 +45,11 @@ public class DriverDAO {
                     rs.getInt("team_id")
                 );
             }
-            return null;
+            
         } catch (SQLException e) {
             System.out.println("Error to get a driver: " + e.getMessage());
         }
+        return null;
     }
 
     public List<Driver> getAllDrivers() {
@@ -80,7 +81,7 @@ public class DriverDAO {
         }
     }
 
-    public void deleteDriver(int id) throws SQLException {
+    public void deleteDriver(int id) {
         String sql = "DELETE FROM drivers WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
