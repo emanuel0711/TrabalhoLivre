@@ -4,7 +4,7 @@
  */
 package com.mycompany.formula1.controller;
 
-import com.mycompany.formula1.service.TeamService;
+import com.mycompany.formula1.dao.TeamDAO;
 import com.mycompany.formula1.database.DatabaseConnection;
 import com.mycompany.formula1.model.Team;
 import java.sql.Connection;
@@ -15,46 +15,45 @@ import java.util.List;
  * @author emanu
  */
 public class TeamController {
-   
 
-    private final TeamService teamService;
-    private final Connection connection;
+    private final TeamDAO teamDAO;
 
     public TeamController() {
-        this.connection = DatabaseConnection.getConnection();
-        this.teamService = new TeamService(connection);
+        Connection connection = DatabaseConnection.getConnection();
+        this.teamDAO = new TeamDAO(connection);
     }
 
-    // Método para criar um novo time
-    public void createTeam(String name, String country) throws Exception {
-        if (name == null || name.isEmpty() || country == null || country.isEmpty()) {
-            throw new Exception("Todos os campos precisam estar preenchidos");
-        }
-        Team team = new Team(name, country);
-        teamService.addTeam(team);
-        DatabaseConnection.closeConnection();
+    public String createTeam(String name, String country) {
+        if (name == null || name.isBlank()) return "Team name cannot be null or empty.";
+        if (country == null || country.isBlank()) return "Country cannot be null or empty.";
+
+
+        teamDAO.addTeam(new Team(name, country));
+        return null;
+    }
+ 
+    public List<Team> getAllTeams() {
+        return teamDAO.getAllTeams();
     }
 
-    // Método para listar todos os times
-    public List<Team> getAllTeams() throws Exception {
-        List<Team> teams = (List<Team>) teamService.getAllTeams();
-        DatabaseConnection.closeConnection();
-        return teams;
+    public String updateTeam(int id, String name, String country) {
+        if (id <= 0) return "Team ID must be a positive integer.";
+        if (name == null || name.isBlank()) return "Team name cannot be null or empty.";
+        if (country == null || country.isBlank()) return "Country cannot be null or empty.";
+
+        teamDAO.updateTeam(new Team(id, name, country));
+        return null;
     }
 
-    // Método para atualizar um time
-    public void updateTeam(int id, String name, String country) throws Exception {
-        if (name == null || name.isEmpty() || country == null || country.isEmpty()) {
-            throw new Exception("Todos os campos precisam estar preenchidos");
-        }
-        Team team = new Team(id, name, country);
-        teamService.updateTeam(team);
-        DatabaseConnection.closeConnection();
+    public String removeTeam(int id) {
+        if (id <= 0) return "Team ID must be a positive integer.";
+
+        teamDAO.deleteTeam(id);
+        return null;
     }
 
-    // Método para remover um time
-    public void deleteTeam(int id) throws Exception {
-        teamService.deleteTeam(id);
-        DatabaseConnection.closeConnection();
+    public Team getTeamById(int id) {
+        if (id <= 0) return null;
+        return teamDAO.getTeamById(id);
     }
 }
