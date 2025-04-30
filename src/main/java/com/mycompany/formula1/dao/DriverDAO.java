@@ -22,16 +22,18 @@ public class DriverDAO {
         this.connection = connection;
     }
 
-    public void addDriver(Driver driver) throws SQLException {
+    public void addDriver(Driver driver) {
         String sql = "INSERT INTO drivers (name, team_id) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, driver.getName());
             stmt.setInt(2, driver.getTeamId());
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error to add a driver: " + e.getMessage());
         }
     }
 
-    public Driver getDriverById(int id) throws SQLException{
+    public Driver getDriverById(int id) {
         String sql = "SELECT * FROM drivers WHERE id = ?";
         try(PreparedStatement stmt = connection.prepareStatement(sql)){
             stmt.setInt(1, id);
@@ -44,10 +46,12 @@ public class DriverDAO {
                 );
             }
             return null;
+        } catch (SQLException e) {
+            System.out.println("Error to get a driver: " + e.getMessage());
         }
     }
 
-    public List<Driver> getAllDrivers() throws SQLException {
+    public List<Driver> getAllDrivers() {
         List<Driver> drivers = new ArrayList<>();
         String sql = "SELECT * FROM drivers";
         try (Statement stmt = connection.createStatement();
@@ -58,17 +62,21 @@ public class DriverDAO {
                 int teamId = rs.getInt("team_id");
                 drivers.add(new Driver(id, name, teamId));
             }
+        } catch (SQLException e) {
+            System.out.println("Error to getAll drivers: " + e.getMessage());
         }
         return drivers;
     }
 
-    public void updateDriver(Driver driver) throws SQLException {
+    public void updateDriver(Driver driver) {
         String sql = "UPDATE drivers SET name = ?, team_id = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, driver.getName());
             stmt.setInt(2, driver.getTeamId());
             stmt.setInt(3, driver.getId());
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error to update a driver: " + e.getMessage());
         }
     }
 
@@ -77,6 +85,8 @@ public class DriverDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error to delete a driver: " + e.getMessage());
         }
     }
 }
