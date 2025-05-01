@@ -47,10 +47,13 @@ public class MainScreen extends javax.swing.JFrame {
         addTeam = new javax.swing.JButton();
         removeTeam = new javax.swing.JButton();
         updateTeam = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        filterDriverByTeam = new javax.swing.JButton();
         addDriver = new javax.swing.JButton();
         updateDriver = new javax.swing.JButton();
         removeDriver = new javax.swing.JButton();
+        addDriverToTeam = new javax.swing.JButton();
+        removeDriverToTeam = new javax.swing.JButton();
+        ResetFilter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,10 +127,10 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ver Pilotos da Equipe");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        filterDriverByTeam.setText("Ver Pilotos da Equipe");
+        filterDriverByTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                filterDriverByTeamActionPerformed(evt);
             }
         });
 
@@ -152,6 +155,27 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        addDriverToTeam.setText("Adicionar Piloto a Equipe");
+        addDriverToTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDriverToTeamActionPerformed(evt);
+            }
+        });
+
+        removeDriverToTeam.setText("Remover Piloto da Equipe");
+        removeDriverToTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeDriverToTeamActionPerformed(evt);
+            }
+        });
+
+        ResetFilter.setText("Resetar Filtro");
+        ResetFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetFilterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -159,17 +183,24 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(updateTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
-                    .addComponent(removeTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(filterDriverByTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(updateTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(removeTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                        .addGap(103, 103, 103)
+                        .addComponent(ResetFilter)
+                        .addGap(40, 40, 40)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addDriverToTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(removeDriverToTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(addDriver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(updateDriver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,26 +211,31 @@ public class MainScreen extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(filterDriverByTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(addTeam)
+                        .addComponent(addTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(updateTeam))
+                        .addComponent(updateTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addDriver)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addDriver)
+                            .addComponent(addDriverToTeam)
+                            .addComponent(ResetFilter))
                         .addGap(18, 18, 18)
-                        .addComponent(updateDriver)
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(updateDriver)
+                            .addComponent(removeDriverToTeam))
+                        .addGap(26, 26, 26)
                         .addComponent(removeDriver)))
                 .addGap(18, 18, 18)
-                .addComponent(removeTeam)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(removeTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,8 +257,8 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeamActionPerformed
-        updateDriversTable();
-        updateTeamsTable();
+       new TeamView().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_addTeamActionPerformed
 
     private void removeTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTeamActionPerformed
@@ -244,38 +280,125 @@ public class MainScreen extends javax.swing.JFrame {
         updateTeamsTable();
     }//GEN-LAST:event_removeTeamActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void filterDriverByTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterDriverByTeamActionPerformed
+       int selectedRow = teamTable.getSelectedRow();
+        
+        if (selectedRow != -1) {
+            int teamId = (int) teamTable.getValueAt(selectedRow, 0);
+            try {
+           
+                List<Driver> driverList = driverTeamController.getDriversByTeamId(teamId);
+                DefaultTableModel model = (DefaultTableModel) driverTable.getModel();
+                model.setRowCount(0); // limpa a tabela
+
+                for (Driver driver : driverList) {
+                    Object[] rowData = {driver.getId(), driver.getName(), driver.getTeamId()};
+                    model.addRow(rowData);
+                }
+            } catch (Exception e) {
+                showErrorMessage(e.getMessage());
+            }   
+        } else {
+            showErrorMessage("Selecione uma Equipe para visualizar os Pilotos dela!");
+        }
+    }//GEN-LAST:event_filterDriverByTeamActionPerformed
 
     private void addDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDriverActionPerformed
-        // TODO add your handling code here:
+        new DriverView().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_addDriverActionPerformed
 
     private void updateDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDriverActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = driverTable.getSelectedRow();
+        
+        if (selectedRow != -1) {
+            int idDriver = (int) driverTable.getValueAt(selectedRow, 0);
+            String driverName = (String) driverTable.getValueAt(selectedRow, 1);
+            
+            Driver driver = new Driver(idDriver, driverName);
+            
+            new DriverView(driver).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um Piloto para ser possivel editar!");
+        }
     }//GEN-LAST:event_updateDriverActionPerformed
 
     private void removeDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDriverActionPerformed
-	int selectedRow = driverTable.getSelectedRow();
+        int selectedRow = driverTable.getSelectedRow();
 			
-	if (selectedRow != -1) {
-		int driverId = (int) driverTable.getValueAt(selectedRow, 0); //Pego o valor da celula que corresponde a linha tal x coluna tal
+        if (selectedRow != -1) {
+	int driverId = (int) driverTable.getValueAt(selectedRow, 0); //Pego o valor da celula que corresponde a linha tal x coluna tal
 
-		try {
-			driverController.deleteDriver(driverId);
-		} catch (Exception e) {
-			showErrorMessage(e.getMessage());
-		}
-	} else {
-		showErrorMessage("Selecione um Piloto!");
+	try {
+                            driverController.deleteDriver(driverId);
+	} catch (Exception e) {
+                            showErrorMessage(e.getMessage());
 	}
+        } else {
+                  showErrorMessage("Selecione um Piloto!");
+        }
         updateDriversTable();
     }//GEN-LAST:event_removeDriverActionPerformed
 
     private void updateTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTeamActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = teamTable.getSelectedRow();
+        
+        
+        
+        if (selectedRow != -1) {
+            int idTeam = (int) teamTable.getValueAt(selectedRow, 0);
+            String teamName = (String) teamTable.getValueAt(selectedRow, 1);
+            String teamCountry = (String) teamTable.getValueAt(selectedRow, 2);
+            
+            Team team = new Team(idTeam, teamName, teamCountry);
+            
+            new TeamView(team).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma Equipe para ser possivel editar!");
+        }
     }//GEN-LAST:event_updateTeamActionPerformed
+
+    private void addDriverToTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDriverToTeamActionPerformed
+         int selectedDriverRow = driverTable.getSelectedRow();
+        int selectedTeamRow = teamTable.getSelectedRow();
+        
+        if (selectedDriverRow != -1 && selectedTeamRow != -1) {
+            int idDriver = (int) driverTable.getValueAt(selectedDriverRow, 0);
+            int idTeam = (int) teamTable.getValueAt(selectedTeamRow, 0);
+                        
+            driverTeamController.linkDriverToTeam(idDriver, idTeam);
+            
+            JOptionPane.showMessageDialog(this, "Adicionado com Sucesso");
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma Equipe e o Piloto para ser possivel adicionar!");
+        }
+    }//GEN-LAST:event_addDriverToTeamActionPerformed
+
+    private void removeDriverToTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDriverToTeamActionPerformed
+        
+        int selectedDriverRow = driverTable.getSelectedRow();
+        int selectedTeamRow = teamTable.getSelectedRow();
+        
+        if (selectedDriverRow != -1 && selectedTeamRow != -1) {
+            int idDriver = (int) driverTable.getValueAt(selectedDriverRow, 0);
+           
+            int idTeam = (int) teamTable.getValueAt(selectedTeamRow, 0);
+            
+            
+            driverTeamController.unlinkDriverFromTeam(idDriver, idTeam);
+            
+            JOptionPane.showMessageDialog(this, "Removido com Sucesso");
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma Equipe e o Piloto para ser possivel remover!");
+        }
+    }//GEN-LAST:event_removeDriverToTeamActionPerformed
+
+    private void ResetFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetFilterActionPerformed
+        updateTeamsTable();
+        updateDriversTable();  // TODO add your handling code here:
+    }//GEN-LAST:event_ResetFilterActionPerformed
 
     
     private void showErrorMessage(String message) {
@@ -347,14 +470,17 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ResetFilter;
     private javax.swing.JButton addDriver;
+    private javax.swing.JButton addDriverToTeam;
     private javax.swing.JButton addTeam;
     private javax.swing.JTable driverTable;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton filterDriverByTeam;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton removeDriver;
+    private javax.swing.JButton removeDriverToTeam;
     private javax.swing.JButton removeTeam;
     private javax.swing.JTable teamTable;
     private javax.swing.JButton updateDriver;
